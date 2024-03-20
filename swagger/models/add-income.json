@@ -1,0 +1,28 @@
+{
+    "type": "object",
+    "properties": {
+        "moneys_id": {
+            "type": "number",
+            "default": 1
+        },
+        "save": {
+            "type": "number",
+            "default": 0
+        }
+    },
+    "required": [
+        "moneys_id",
+        "save"
+      ],
+      "example": {
+        "data": [
+          {
+            "interlocutor": {
+              "moneys_id": 1,
+              "save": 100
+            }
+          }
+        ],
+        "success": true
+      }
+}

@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "properties": {
+        "users_id": {
+            "type": "number",
+            "default": 1
+        },
+        "type_of": {
+            "type": "string",
+            "default": "string"
+        },
+        "value": {
+            "type": "number",
+            "default": 0
+        }
+    },
+    "required": [
+        "users_id",
+        "type_of",
+        "value"
+      ],
+      "example": {
+        "data": [
+          {
+            "interlocutor": {
+              "users_id": 1,
+              "type_of": "dollar",
+              "value": 0
+            }
+          }
+        ],
+        "success": true
+      }
+}

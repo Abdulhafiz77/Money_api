@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "properties": {
+      "id": {
+          "type": "number",
+          "default": 1
+      },
+      "first_name": {
+          "type": "string",
+          "default": "string"
+      },
+      "last_name": {
+          "type": "string",
+          "default": "string"
+      },
+      "middle_name": {
+          "type": "string",
+          "default": "string"
+      },
+      "email": {
+        "type": "string",
+        "default": "string"
+      },
+      "password": {
+        "type": "string",
+        "default": "string"
+      },
+      "phone": {
+          "type": "string",
+          "default": "string"
+      },
+      "created_at": {
+          "type": "string",
+          "default": "string"
+      },
+      "status": {
+          "type": "number",
+          "default": 10
+      },
+      "updated_at": {
+          "type": "string",
+          "default": "string"
+      }
+  },
+  "required": [
+      "first_name",
+      "email",
+      "password",
+      "phone",
+      "last_name"
+    ],
+  "example": {
+    "data": [
+      {
+        "interlocutor": {
+          "id": 52,  
+          "firstName": "Stiv",
+          "lastName": "Jobs",
+          "email": "stiv_jobs@gmail.com",
+          "password": "6478796_dgud",
+          "phone": "+998907777777"
+        }
+      }
+    ],
+    "success": true
+  }
+}

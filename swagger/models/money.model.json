@@ -1,0 +1,51 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "number",
+            "default": 1
+        },
+        "users_id": {
+            "type": "number",
+            "default": 1
+        },
+        "type_of": {
+            "type": "string",
+            "default": "string"
+        },
+        "value": {
+            "type": "number",
+            "default": 0
+        },
+        "created_at": {
+            "type": "string",
+            "default": "string"
+        },
+        "status": {
+            "type": "number",
+            "default": 10
+        },
+        "updated_at": {
+            "type": "string",
+            "default": "string"
+        }
+    },
+    "required": [
+        "users_id",
+        "type_of",
+        "value"
+      ],
+    "example": {
+      "data": [
+        {
+          "interlocutor": {
+            "id": 52,  
+            "users_id": 1,
+            "type_of": "dollar",
+            "value": 100
+          }
+        }
+      ],
+      "success": true
+    }
+  }

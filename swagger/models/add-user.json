@@ -1,0 +1,50 @@
+{
+    "type": "object",
+    "properties": {
+        "first_name": {
+            "type": "string",
+            "default": "url"
+        },
+        "last_name": {
+            "type": "string",
+            "default": "string"
+        },
+        "middle_name": {
+            "type": "string",
+            "default": "string"
+        },
+        "email": {
+            "type": "string",
+            "default": "string"
+        },
+        "password": {
+            "type": "string",
+            "default": "string"
+        },
+        "phone": {
+            "type": "string",
+            "default": "string"
+        }
+    },
+    "required": [
+        "first_name",
+        "phone",
+        "last_name",
+        "email",
+        "password"
+      ],
+      "example": {
+        "data": [
+          {
+            "interlocutor": {
+              "firstName": "Stiv",
+              "lastName": "Jobs",
+              "email": "stiv_jobs@gmail.com",
+              "password": "6478796_dgud",
+              "phone": "+998907777777"
+            }
+          }
+        ],
+        "success": true
+      }
+}

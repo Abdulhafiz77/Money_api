@@ -3,10 +3,9 @@ const cors = require('cors')
 const morgan = require('morgan')
 import * as http from 'http'
 import * as swaggerUi from 'swagger-ui-express'
-import * as path from 'path';
 import { routes } from '.'
 
-//const swagger = require('../swagger')
+const swagger = require('../swagger')
 
 class ServerModule {
 
@@ -34,7 +33,7 @@ class ServerModule {
             res.setHeader('Access-Control-Expose-Headers', 'original_name, Content-Disposition')
             next();
         })
-        //this.app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swagger, { "showExplorer": true }))
+        this.app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swagger, { "showExplorer": true }))
         routes(this.app);
         this.http.listen(
             this.port,

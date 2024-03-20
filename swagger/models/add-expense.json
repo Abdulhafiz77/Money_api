@@ -1,0 +1,28 @@
+{
+    "type": "object",
+    "properties": {
+        "moneys_id": {
+            "type": "number",
+            "default": 1
+        },
+        "spend": {
+            "type": "number",
+            "default": 0
+        }
+    },
+    "required": [
+        "moneys_id",
+        "spend"
+      ],
+      "example": {
+        "data": [
+          {
+            "interlocutor": {
+              "moneys_id": 1,
+              "spend": 100
+            }
+          }
+        ],
+        "success": true
+      }
+}

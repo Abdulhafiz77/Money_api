@@ -1,0 +1,91 @@
+{
+  "post": {
+    "tags": [
+      "Expense"
+    ],
+    "security": [
+      {
+        "Bearer": [
+          "Spend"
+        ]
+      }
+    ],
+    "summary": "Save Expense",
+    "operationId": "saveExpense",
+    "parameters": [
+    ],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/AddExpense"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "default": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "get": {
+    "tags": [
+      "Expense"
+    ],
+    "security": [
+      {
+        "Bearer": [
+          "Spend"
+        ]
+      }
+    ],
+    "summary": "GET Expense list",
+    "operationId": "getExpenseList",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "limit",
+        "required": false,
+        "type": "integer",
+        "default": 10
+      },
+      {
+        "in": "query",
+        "name": "status",
+        "required": false,
+        "type": "integer",
+        "default": 10
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Success response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Expense"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

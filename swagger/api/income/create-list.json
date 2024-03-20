@@ -1,0 +1,91 @@
+{
+  "post": {
+    "tags": [
+      "Income"
+    ],
+    "security": [
+      {
+        "Bearer": [
+          "Save"
+        ]
+      }
+    ],
+    "summary": "Save Income",
+    "operationId": "saveIncome",
+    "parameters": [
+    ],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/AddIncome"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "default": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "get": {
+    "tags": [
+      "Income"
+    ],
+    "security": [
+      {
+        "Bearer": [
+          "Save"
+        ]
+      }
+    ],
+    "summary": "GET Income list",
+    "operationId": "getIncomeList",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "limit",
+        "required": false,
+        "type": "integer",
+        "default": 10
+      },
+      {
+        "in": "query",
+        "name": "status",
+        "required": false,
+        "type": "integer",
+        "default": 10
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Success response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Income"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

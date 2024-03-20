@@ -1,0 +1,124 @@
+{
+    "get": {
+        "tags": [
+            "Users"
+        ],
+        "security": [
+            {
+                "Bearer": [
+                    "User"
+                ]
+            }
+        ],
+        "summary": "GET User by id",
+        "operationId": "GET User by id",
+        "parameters": [
+            {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "type": "number"
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "put": {
+        "tags": [
+            "Users"
+        ],
+        "security": [
+            {
+                "Bearer": [
+                    "User"
+                ]
+            }
+        ],
+        "summary": "update User",
+        "operationId": "update User",
+        "parameters": [
+            {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "type": "number"
+            }
+        ],
+        "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddUser"
+                }
+              }
+            },
+            "required": true
+          },
+        "responses": {
+            "200": {
+                "description": "",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "delete": {
+        "tags": [
+            "Users"
+        ],
+        "security": [
+            {
+                "Bearer": [
+                    "User"
+                ]
+            }
+        ],
+        "summary": "Delete by id User",
+        "operationId": "Delete by id User",
+        "parameters": [
+            {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "type": "number",
+                "default": 1
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "boolean",
+                                    "default": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

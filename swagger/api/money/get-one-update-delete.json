@@ -1,0 +1,124 @@
+{
+    "get": {
+        "tags": [
+            "Moneys"
+        ],
+        "security": [
+            {
+                "Bearer": [
+                    "Money"
+                ]
+            }
+        ],
+        "summary": "GET Money by id",
+        "operationId": "GET Money by id",
+        "parameters": [
+            {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "type": "number"
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Money"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "put": {
+        "tags": [
+            "Moneys"
+        ],
+        "security": [
+            {
+                "Bearer": [
+                    "Money"
+                ]
+            }
+        ],
+        "summary": "update Money",
+        "operationId": "update Money",
+        "parameters": [
+            {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "type": "number"
+            }
+        ],
+        "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddMoney"
+                }
+              }
+            },
+            "required": true
+          },
+        "responses": {
+            "200": {
+                "description": "",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Money"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "delete": {
+        "tags": [
+            "Moneys"
+        ],
+        "security": [
+            {
+                "Bearer": [
+                    "Money"
+                ]
+            }
+        ],
+        "summary": "Delete by id Money",
+        "operationId": "Delete by id Money",
+        "parameters": [
+            {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "type": "number",
+                "default": 1
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "boolean",
+                                    "default": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
