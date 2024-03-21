@@ -1,4 +1,10 @@
-module.exports = {
+module.exports = {  
+    // ==================================
+    //  ======= User APIs ==========
+    // ==================================
+    "/user": require('./api/user/create-list.json'),
+    "/user/{id}": require('./api/user/get-one-update-delete.json'),
+
     // ==================================
     //  ======= Money APIs ==========
     // ==================================
@@ -14,10 +20,4 @@ module.exports = {
     //  ======= Expense APIs ==========
     // ==================================
     "/expense": require('./api/expense/create-list.json'),
-
-    // ==================================
-    //  ======= User APIs ==========
-    // ==================================
-    "/user": require('./api/user/create-list.json'),
-    "/user/{id}": require('./api/user/get-one-update-delete.json'),
 };

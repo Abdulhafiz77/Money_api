@@ -43,49 +43,45 @@
       }
     }
   },
-  "get": {
+  "delete": {
     "tags": [
-      "Expense"
+        "Expense"
     ],
     "security": [
-      {
-        "Bearer": [
-          "Spend"
-        ]
-      }
+        {
+            "Bearer": [
+                "Spend"
+            ]
+        }
     ],
-    "summary": "GET Expense list",
-    "operationId": "getExpenseList",
+    "summary": "Delete by id Expense",
+    "operationId": "Delete by id Expense",
     "parameters": [
-      {
-        "in": "query",
-        "name": "limit",
-        "required": false,
-        "type": "integer",
-        "default": 10
-      },
-      {
-        "in": "query",
-        "name": "status",
-        "required": false,
-        "type": "integer",
-        "default": 10
-      }
+        {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "number",
+            "default": 1
+        }
     ],
     "responses": {
-      "200": {
-        "description": "Success response",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Expense"
-              }
+        "200": {
+            "description": "",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "success": {
+                                "type": "boolean",
+                                "default": true
+                            }
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
+}
 }

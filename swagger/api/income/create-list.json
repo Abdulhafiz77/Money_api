@@ -43,49 +43,45 @@
       }
     }
   },
-  "get": {
+  "delete": {
     "tags": [
-      "Income"
+        "Income"
     ],
     "security": [
-      {
-        "Bearer": [
-          "Save"
-        ]
-      }
+        {
+            "Bearer": [
+                "Save"
+            ]
+        }
     ],
-    "summary": "GET Income list",
-    "operationId": "getIncomeList",
+    "summary": "Delete by id Income",
+    "operationId": "Delete by id Income",
     "parameters": [
-      {
-        "in": "query",
-        "name": "limit",
-        "required": false,
-        "type": "integer",
-        "default": 10
-      },
-      {
-        "in": "query",
-        "name": "status",
-        "required": false,
-        "type": "integer",
-        "default": 10
-      }
+        {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "number",
+            "default": 1
+        }
     ],
     "responses": {
-      "200": {
-        "description": "Success response",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Income"
-              }
+        "200": {
+            "description": "",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "success": {
+                                "type": "boolean",
+                                "default": true
+                            }
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
+}
 }
