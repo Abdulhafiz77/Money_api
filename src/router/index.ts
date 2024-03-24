@@ -1,9 +1,9 @@
 import * as express from "express";
-import { errorHandler } from "..";
+import { errorHandler } from "../utils";
 import { MoneyRoutes } from "./money.routes";
 import { UserRoutes } from "./user.routes";
-import { ExpenseRoutes } from "./expense.routes";
-import { IncomeRoutes } from "./income.routes";
+import { HistoryRoutes } from "./history.routes";
+
 
 function nestedRoutes(this: any, path, configure) {
     const router = express.Router({ mergeParams: true });
@@ -29,12 +29,8 @@ export const routes = (app: express.Application) => {
             MoneyRoutes(data)
         });
 
-        app['prefix']('/expense', data => {
-            ExpenseRoutes(data)
-        });
-
-        app['prefix']('/income', data => {
-            IncomeRoutes(data)
+        app['prefix']('/value', data => {
+            HistoryRoutes(data)
         });
 
     })

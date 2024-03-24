@@ -1,4 +1,4 @@
-import { pgPoolQuery, MoneysModel, BaseStatusEnum, QueryParams, IncomeModel } from "..";
+import { pgPoolQuery, MoneysModel, BaseStatusEnum, QueryParams } from "..";
 
 
 export class MoneyRepository {
@@ -49,32 +49,40 @@ export class MoneyRepository {
 
         return result.rows[0]
     }
-    static async getIncomeById(id: number): Promise<MoneysModel> {
-        const sql = `select m.*,
-                      COALESCE(json_agg(json_build_object('add', i.save, 'created_at', i.created_at))
-                      FILTER(WHERE i.save IS NOT NULL), '[]') AS "income:",
-                      SUM(i.save) AS total
-                      from public.moneys m
-                      left join public.income i on i.moneys_id = m.id
-                      where m.id = $1
-                      group by m.id, m.type_of, m.value, m.created_at, m.status
-                      order by m.created_at desc; 
-                        `
-        const result = await pgPoolQuery(sql, [id]);
-
-        return result.rows[0]
-    }
-
-    static async getExpenseById(id: number): Promise<MoneysModel> {
-        const sql = `select m.*,
-                      COALESCE(json_agg(json_build_object('exit', e.spend, 'created_at', e.created_at))
-                      FILTER (WHERE e.spend IS NOT NULL), '[]') AS "expense:",
-                      SUM(e.spend) AS total
-                      from public.moneys m
-                      left join public.expense e on e.moneys_id = m.id
-                      where m.id = $1
-                      group by m.id, m.type_of, m.value, m.created_at, m.status
-                      order by m.created_at desc; 
+    static async getHistoryById(id: number): Promise<MoneysModel> {
+        const sql = `select m.id, 
+                            m.type_of,
+                            m.users_id,
+                            m.value,
+                            m.created_at,
+                            m.updated_at,
+                            m.status,
+                      COALESCE(json_agg( json_build_object('add', 
+                      CASE WHEN h.type = 'income' 
+                      THEN h.value END, 'created_at', 
+                      CASE WHEN h.type = 'income' 
+                      THEN h.created_at END))
+                      FILTER(WHERE h.value IS NOT NULL), '[]') 
+                      AS income,
+                      COALESCE(json_agg(json_build_object('exit', 
+                      CASE WHEN h.type = 'expense' 
+                      THEN h.value END, 'created_at', 
+                      CASE WHEN h.type = 'expense' 
+                      THEN h.created_at END))
+                      FILTER (WHERE h.value IS NOT NULL), '[]') 
+                      AS expense,
+                      SUM(CASE WHEN h.type = 'income' 
+                      THEN h.value ELSE 0 END) 
+                      AS income_total,
+                      SUM(CASE WHEN h.type = 'expense' 
+                      THEN h.value ELSE 0 END) 
+                      AS expense_total
+                      FROM public.moneys m
+                      LEFT JOIN public.history h ON h.moneys_id = m.id 
+                      AND (h.type = 'income' OR h.type = 'expense')
+                      WHERE m.id = $1
+                      GROUP BY m.id, m.type_of, m.value, m.created_at, m.status
+                      ORDER BY m.created_at desc; 
                         `
         const result = await pgPoolQuery(sql, [id]);
 

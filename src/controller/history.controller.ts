@@ -1,14 +1,14 @@
 import { ErrorService } from '../utils/error.service';
 import {
-     IncomeRepository, IncomeModel, ValidatedRequest, ValidatedRequestBody
+     HistoryRepository, HistoryModel, ValidatedRequest, ValidatedRequestBody
 } from '..';
 
-export class IncomeController {
 
-    
-    static async create(req: ValidatedRequest<ValidatedRequestBody<IncomeModel>>, res) {
+export class HistoryController {
+
+    static async create(req: ValidatedRequest<ValidatedRequestBody<HistoryModel>>, res) {
         try {
-            const data = await IncomeRepository.create(req.body)
+            const data = await HistoryRepository.create(req.body)
 
             return res.send(data);
 
@@ -20,7 +20,7 @@ export class IncomeController {
     static async delete(req: ValidatedRequest<any>, res) {
         try {
 
-            await IncomeRepository.delete(req.params.id);
+            await HistoryRepository.delete(req.params.id);
 
             return res.send({ success: true });
 

@@ -30,20 +30,10 @@ export class MoneyController {
         }
     }
 
-    static async getIncomeById(req: ValidatedRequest<any>, res) {
+    static async getHistoryById(req: ValidatedRequest<any>, res) {
         try {
 
-            let data = await MoneyRepository.getIncomeById(req.params.id);
-            return res.send(data);
-        } catch (error) {
-            return ErrorService.error(res, error);
-        }
-    }
-
-    static async getExpenseById(req: ValidatedRequest<any>, res) {
-        try {
-
-            let data = await MoneyRepository.getExpenseById(req.params.id);
+            let data = await MoneyRepository.getHistoryById(req.params.id);
             return res.send(data);
         } catch (error) {
             return ErrorService.error(res, error);

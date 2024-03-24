@@ -4,4 +4,4 @@ export * from './models';
 export * from './repository';
 export * from './controller';
 export * from './router';
-export * from './middleware'
+export * from './utils'

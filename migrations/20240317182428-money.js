@@ -25,34 +25,26 @@ exports.up = function (db, callback) {
       updated_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       CONSTRAINT unique_users_phone UNIQUE (phone)
   );
-  CREATE TABLE IF NOT EXISTS public.moneys (
-    id                SERIAL PRIMARY KEY,
-    type_of           VARCHAR(50) NOT NULL,
-    users_id          INTEGER NOT NULL,
-    CONSTRAINT users_id FOREIGN KEY (users_id) REFERENCES public.users (id),
-    value             INTEGER NOT NULL,
-    status            INTEGER DEFAULT 10,
-    created_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-CREATE TABLE IF NOT EXISTS public.expense (
-  id                SERIAL PRIMARY KEY,
-  spend             INTEGER NOT NULL,
-  moneys_id         INTEGER NOT NULL,
-  CONSTRAINT moneys_expense_id FOREIGN KEY (moneys_id) REFERENCES public.moneys (id),
-  created_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  status            INTEGER DEFAULT 10
-);
-CREATE TABLE IF NOT EXISTS public.income (
-  id                SERIAL PRIMARY KEY,
-  save              INTEGER NOT NULL,
-  moneys_id         INTEGER NOT NULL,
-  CONSTRAINT moneys_income_id FOREIGN KEY (moneys_id) REFERENCES public.moneys (id),
-  created_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  status            INTEGER DEFAULT 10
-);
+    CREATE TABLE IF NOT EXISTS public.moneys (
+      id                SERIAL PRIMARY KEY,
+      type_of           VARCHAR(50) NOT NULL,
+      users_id          INTEGER NOT NULL,
+      CONSTRAINT users_id FOREIGN KEY (users_id) REFERENCES public.users (id),
+      value             INTEGER NOT NULL,
+      status            INTEGER DEFAULT 10,
+      created_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+    CREATE TABLE IF NOT EXISTS public.history (
+      id                SERIAL PRIMARY KEY,
+      value             INTEGER NOT NULL,
+      moneys_id         INTEGER NOT NULL,
+      type              VARCHAR NOT NULL,
+      CONSTRAINT moneys_history_id FOREIGN KEY (moneys_id) REFERENCES public.moneys (id),
+      created_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      status            INTEGER DEFAULT 10
+  );
 `, function (err) {
     if (err) return callback(err);
     callback();
@@ -63,8 +55,7 @@ exports.down = function (db, callback) {
   db.runSql(`
           DROP TABLE IF EXISTS users;
           DROP TABLE IF EXISTS moneys;
-          DROP TABLE IF EXISTS expense;
-          DROP TABLE IF EXISTS income;
+          DROP TABLE IF EXISTS history;
           `, function (err) {
     if (err) return callback(err);
     callback();
